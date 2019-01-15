@@ -14,6 +14,9 @@ to overlap another circle (food) in order to grow bigger.
 const AVATAR_SIZE_GAIN = 50;
 const AVATAR_SIZE_LOSS = 1;
 
+// Constant for food's maximum speed
+const FOOD_MAX_SPEED = 5;
+
 // Avatar is an object defined by its properties
 let avatar = {
   x: 0,
