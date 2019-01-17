@@ -25,7 +25,7 @@ let avatar = {
   maxSize: 64,
   size: 64,
   active: true,
-  color: '#cccc55'
+  color: '#383838'
 }
 
 // Food is an object defined by its properties
@@ -37,7 +37,7 @@ let food = {
   tx: 0,
   ty: 0,
   size: 64,
-  color: '#55cccc'
+  color: '#ffffff'
 }
 
 // preload()
@@ -73,7 +73,7 @@ function draw() {
   }
 
   // Otherwise we handle the game
-  background(0);
+  background("#ff8288");
   updateAvatar();
   updateFood();
   checkCollision();
