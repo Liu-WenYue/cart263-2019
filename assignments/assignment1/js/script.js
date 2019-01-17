@@ -12,10 +12,11 @@ to overlap another circle (food) in order to grow bigger.
 
 // Constants defining key quantities
 const AVATAR_SIZE_GAIN = 50;
-const AVATAR_SIZE_LOSS = 1;
+const AVATAR_SIZE_LOSS = 0.5;
 
 // Constant for food's maximum speed
-const FOOD_MAX_SPEED = 5;
+const FOOD_MAX_SPEED = 10;
+const FOOD_MIN_SPEED = 5;
 
 // Avatar is an object defined by its properties
 let avatar = {
@@ -33,6 +34,8 @@ let food = {
   y: 0,
   vx: 0,
   vy: 0,
+  tx: 0,
+  ty: 0,
   size: 64,
   color: '#55cccc'
 }
@@ -52,7 +55,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
-  positionFood();
+  // positionFood();
   noCursor();
 }
 
@@ -72,9 +75,11 @@ function draw() {
   // Otherwise we handle the game
   background(0);
   updateAvatar();
+  updateFood();
   checkCollision();
   displayAvatar();
   displayFood();
+
 }
 
 // updateAvatar()
@@ -116,6 +121,37 @@ function displayAvatar() {
   fill(avatar.color);
   ellipse(avatar.x,avatar.y,avatar.size);
   pop();
+}
+
+// updateFood()
+//
+// Updates the food object's position based on its velocity;
+// Screen wrapping for food.
+function updateFood() {
+  food.vx = map(noise(food.tx),0,1,-FOOD_MIN_SPEED,FOOD_MAX_SPEED);
+  food.vy = map(noise(food.ty),0,1,-FOOD_MIN_SPEED,FOOD_MAX_SPEED);
+
+  food.x += food.vx;
+  food.y += food.vy;
+
+  //Changes the time every frame.
+  food.tx += 0.01;
+  food.ty += 0.05;
+
+  // Screen wrapping for food.
+  if (food.x < 0) {
+    food.x += windowWidth;
+  }
+  else if (food.x > windowWidth) {
+    food.x -= windowWidth;
+  }
+
+  if (food.y < 0) {
+    food.y += windowHeight;
+  }
+  else if (food.y > windowHeight) {
+    food.y -= windowHeight;
+  }
 }
 
 // displayFood()
