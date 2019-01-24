@@ -7,13 +7,18 @@ Raving Redactionist CSS.
 /* Just some general syling of the page for aesthetics */
 body {
   font-family: Courier, monospace;
-  width: 800px;
-  margin-left: 100px;
-  margin-top: 100px;
+  margin: 120px;
 }
 
 div {
   margin-top: 1em;
+  font-size: 16px;
+  line-height: 25px;
+}
+
+#count {
+  font-size: 2em;
+  margin-bottom: 50px;
 }
 
 /* Redacted elements need to be blanked out */
