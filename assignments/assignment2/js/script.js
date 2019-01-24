@@ -14,12 +14,12 @@ The player circle shrinks over time, but grows when it eats.
 
 // Constants for key quantities
 const AVATAR_MAX_SIZE = 64;
-const AVATAR_SIZE_LOSS_PER_FRAME = .1;
+const AVATAR_SIZE_LOSS_PER_FRAME = 1;
 const FOOD_MIN_SIZE = 25;
 const FOOD_MAX_SIZE = 80;
 const FOOD_MIN_SPEED = 5;
 const FOOD_MAX_SPEED = 10;
-const NUM_OF_FOODS = 5;
+const NUM_OF_FOODS = 4;
 
 // Variables to store the two key objects
 let avatar;
