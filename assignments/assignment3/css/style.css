@@ -23,7 +23,7 @@ div {
 
 /* Redacted elements need to be blanked out */
 .redacted {
-  background-color: black;
+  background-color: #111111;
   color: transparent;
   text-decoration: none;
 }
@@ -32,5 +32,11 @@ div {
 .revealed {
   background-color: transparent;
   text-decoration: underline;
-  color: red
+  color: red;
+}
+
+/* Found elements need to be highlighted to be noticed! */
+.found {
+  background-color: red;
+  color: blue;
 }
