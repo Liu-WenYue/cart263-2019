@@ -58,15 +58,15 @@ function setup() {
 function draw() {
   background("#ff8288");
 
-  avatar.update();
-  if (avatar.collide(foods)) {
-    avatar.eat(foods);
-  }
-
   avatar.display();
+  avatar.update();
 
   for (let i = 0; i < foods.length; i++) {
     foods[i].update();
     foods[i].display();
+
+    if (avatar.collide(foods[i])) {
+      avatar.eat(foods[i]);
+    }
   }
 }
