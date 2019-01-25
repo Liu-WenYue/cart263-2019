@@ -35,8 +35,16 @@ div {
   color: red;
 }
 
+/* Secret elements will look like the usual texts at first! */
+.secret {
+  background-color: transparent;
+  color: black;
+  text-decoration: none;
+}
+
 /* Found elements need to be highlighted to be noticed! */
 .found {
-  background-color: red;
-  color: blue;
+  background-color: crimson;
+  color: white;
+  text-decoration: overline;
 }

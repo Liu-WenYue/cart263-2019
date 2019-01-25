@@ -11,8 +11,9 @@ secrets become revealed!
 
 ******************/
 
-// A place to store the jQuery selection of all spans
+// A place to store the jQuery selection of all spans and secrets
 let $spans;
+let $secrets;
 
 // When the document is loaded we call the setup function
 $(document).ready(setup);
@@ -22,9 +23,16 @@ $(document).ready(setup);
 // Sets the click handler and starts the time loop
 function setup() {
   // Save the selection of all spans (since we do stuff to them multiple times)
-  $spans = $('span');
+  $spans = $('span').not('#secret-count').not('#secret');
+
+  // Save the selection of all secrets.
+  $secrets = $('.secret');
+
   // Set a click handler on the spans (so we know when they're clicked)
   $spans.on('click',spanClicked);
+
+  $secrets.on('mouseover',secretMousedOver);
+
   // Set an interval of 500 milliseconds to update the state of the page
   setInterval(update,500);
 };
@@ -58,6 +66,17 @@ function updateSpan() {
     $(this).removeClass('redacted');
     $(this).addClass('revealed');
   }
+}
+
+// secretMousedOver()
+//
+// It highlights the current span by removing the
+// redacted class and adding the revealed class. Because this function is called
+// by each(), "this" refers to the current element that each has selected.
+function secretMousedOver() {
+  $(this).addClass('found');
+  $('.found').off('mouseover');
+
 }
 
 // A version using anonymous functions:
