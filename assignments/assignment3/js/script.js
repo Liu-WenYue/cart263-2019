@@ -15,6 +15,12 @@ secrets become revealed!
 let $spans;
 let $secrets;
 
+// A variable that stores the secret count.
+let $secretCount;
+
+// Variable that stores the number of secret words found
+let numOfSecretsFound = 0;
+
 // When the document is loaded we call the setup function
 $(document).ready(setup);
 
@@ -23,14 +29,18 @@ $(document).ready(setup);
 // Sets the click handler and starts the time loop
 function setup() {
   // Save the selection of all spans (since we do stuff to them multiple times)
-  $spans = $('span').not('#secret-count').not('#secret');
+  $spans = $('span').not('#secret-count').not('.secret');
 
   // Save the selection of all secrets.
   $secrets = $('.secret');
 
+  // Save the selection of the secret count.
+  $secretCount = $('#secret-count');
+
   // Set a click handler on the spans (so we know when they're clicked)
   $spans.on('click',spanClicked);
 
+  // Set a mouseover handler on the secrets.
   $secrets.on('mouseover',secretMousedOver);
 
   // Set an interval of 500 milliseconds to update the state of the page
@@ -77,6 +87,10 @@ function secretMousedOver() {
   $(this).addClass('found');
   $('.found').off('mouseover');
 
+  // When the mouse is over the secret words, the number of secret words increases.
+  numOfSecretsFound++;
+  // Adds the number to the secret count.
+  $secretCount.text(numOfSecretsFound);
 }
 
 // A version using anonymous functions:
