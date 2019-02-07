@@ -7,12 +7,16 @@ let $coin;
 let $tax;
 let workingProgress = 0;
 let bgImage;
+let bgm;
+let typing;
 
 // preload()
 //
 // To preload the background image.
 function preload() {
   bgImage = loadImage("assets/images/bg.png");
+  bgm = new Audio("assets/sounds/dance-of-death.mp3");
+  typing = new Audio("assets/sounds/typing.mp3")
 }
 
 // setup()
@@ -40,10 +44,14 @@ $(document).ready(function() {
   // Call the starting dialog box.
   $('#dialog').dialog();
 
+
   // When key is down...
   $(document).on("keydown", function(e){
     // and the key is the spacebar, call gear and typing animation.
     if(e.keyCode === 32){
+      // Call the music and sound effects functions.
+      backgroundMusic();
+      soundEffects();
       $gear.attr('src','assets/images/gear.gif');
       $sisyphus.attr('src','assets/images/typing.gif');
 
@@ -53,13 +61,13 @@ $(document).ready(function() {
       });
     }
 
-    // else {
-    //   $gear.attr('src','assets/images/gear00.png');
-    //   $sisyphus.attr('src','assets/images/typing-anim00.png');
-    // }
+    else {
+      $gear.attr('src','assets/images/gear00.png');
+      $sisyphus.attr('src','assets/images/typing-anim00.png');
+    }
 
     // Relocate the progress bar on the screen.
-    $( "#progressbar" ).offset({
+    $("#progressbar").offset({
       top: 660,
       left: 108
     });
@@ -78,3 +86,21 @@ $(document).ready(function() {
     }
   });
 });
+
+// backgroundMusic()
+//
+// To handle the background music.
+function backgroundMusic() {
+  bgm.loop = true;
+  bgm.volume = 1;
+  bgm.play();
+}
+
+// soundEffects()
+//
+// To handle the sound effects.
+function soundEffects() {
+  typing.loop = true;
+  typing.volume = 0.7;
+  typing.play();
+}
