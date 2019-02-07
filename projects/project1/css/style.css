@@ -25,10 +25,18 @@ body {
   position: relative;
 }
 
-#background {
+/* The canvas was placed behind all the other assets. */
+canvas {
   position: absolute;
-  display: block;
-  left: 105px;
+  top: 0;
+  left: 0;
+  z-index: -10;
+}
+
+/* Resized the progressbar. */
+#progressbar {
+  width: 1221px;
+  height: 45px;
 }
 
 #gear {
@@ -44,5 +52,16 @@ body {
 #coin {
   position: absolute;
   right: 210px;
-  top: 610px;
+  top: 585px;
+  display: none;
+}
+
+#tax {
+  font-family: Electrolize;
+  font-size: 25px;
+  position: absolute;
+  right: 240px;
+  top: 530px;
+  color: white;
+  display: none;
 }
