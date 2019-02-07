@@ -10,3 +10,31 @@ body {
   padding: 0;
   margin: 0;
 }
+
+#game {
+  /* To have all the elements inside game id stay on top of each other and
+  have a better control of their positions. */
+  position: relative;
+}
+
+#background {
+  position: absolute;
+  display: block;
+  left: 105px;
+}
+
+#gear {
+  position: absolute;
+  left: 105px;
+}
+
+#sisyphus {
+  position: absolute;
+  left: 190px;
+}
+
+#coin {
+  position: absolute;
+  right: 210px;
+  top: 610px;
+}
