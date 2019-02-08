@@ -1,5 +1,6 @@
 The Working Sisyphus - Liu WenYue
-February 7th 2019
+
+February 7th, 2019
 
 This game is based on the Sisyphus’ story and it's called The Working Sisyphus. There is only one thing for the character to do in this game - to work. The players have to keep pressing spacebar to make the character to work. The working progress will increase as the spacebar is pressed. Once the working progress reaches 70%, coin (salary) will be generated at the right side of the screen. However,  the coin will disappear with a text notification of "tax paid!" when the character is just about to finish his work. As a result, the character has to start the whole working progress again and experience the pain over and over. This game is infinite and unstoppable.
 
@@ -7,7 +8,7 @@ The first thing that came to my mind when I read the Sisyphus' story is adult wo
 
 In the aesthetic aspect, the overall theme of this game is steampunk style and the color palette used is yellow and red hues. The radial gradient in the background brings players' attention to the center of the screen where the character, coin, and the starting dialog box will be located.
 
-The background music of the game is an extract from one of the songs used in anime "Shiki" called "Dance of Death". I feel these four phrases are very clean and beautiful. At the same time, it also shows some feeling of desperation of the character. Moreover, these phrases stay in the same tone and loop itself which also shows the idea of infinite.
+The background music of the game is an extract from one of the songs used in anime "Shiki" called "Dance of Death". I feel these four phrases are very clean and beautiful. At the same time, it also shows some feeling of desperation of the character. Moreover, these phrases stay in the same tone and loop itself which also shows the idea of infinite. I also used some of my typing audio as sound effects, as the character and the players are all pressing their keys, I feel it will make the players more involved in the game.
 
 I encountered a lot of problems when I was arranging the elements as I planned to work with both p5 libraries and jQuery. I first used the p5.play.js to play my sequence animation, but it was very hard for me to put them inside a jQuery-based project. In the end, I re-exported my animation in the animated GIF format and cleared the background in Photoshop to have all the animations worked as desired.
 
