@@ -3,3 +3,15 @@
 This is the style file for this project.
 
 **********************************************/
+body {
+  margin: 20px;
+  padding: 20px;
+}
+
+#fly {
+  margin: 30px;
+}
+
+#spongebob {
+  margin: 30px;
+}
