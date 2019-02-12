@@ -18,21 +18,14 @@ Chewing: https://freesound.org/people/InspectorJ/sounds/412068/
 let buzzSFX = new Audio("assets/sounds/buzz.mp3");
 let crunchSFX = new Audio("assets/sounds/crunch.wav");
 
-// Variable to hold our two key elements
+// Variable to hold our key elements
 let $mouth;
 let $fly;
+let $spongebob;
 
 $(document).ready(setup);
 
 function setup() {
-  // Get the mouth element from the page
-  $mouth = $('#mouth');
-  // Make it droppable
-  $mouth.droppable({
-    // The drop option specifies a function to call when a drop is completed
-    drop: flyDropped
-  });
-
   // Get the fly element from the page
   $fly = $('#fly');
   // Make it draggable
@@ -41,6 +34,21 @@ function setup() {
   // Start up the buzzing of the fly
   buzzSFX.loop = true;
   buzzSFX.play();
+
+  // Get the fly element from the page
+  $spongebob = $('#spongebob');
+  // Make it draggable,
+  $spongebob.draggable();
+
+  // Get the mouth element from the page
+  $mouth = $('#mouth');
+  // Make it droppable
+  $mouth.droppable({
+    accept: $fly,
+
+    // The drop option specifies a function to call when a drop is completed
+    drop: flyDropped
+  });
 }
 
 // flyDropped(event,ui)
