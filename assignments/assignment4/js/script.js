@@ -17,6 +17,7 @@ Chewing: https://freesound.org/people/InspectorJ/sounds/412068/
 // Sound effects for the experience
 let buzzSFX = new Audio("assets/sounds/buzz.mp3");
 let crunchSFX = new Audio("assets/sounds/crunch.wav");
+let laughSFX = new Audio("assets/sounds/laugh.mp3");
 
 // Variable to hold our key elements
 let $mouth;
@@ -38,7 +39,9 @@ function setup() {
   // Get the fly element from the page
   $spongebob = $('#spongebob');
   // Make it draggable,
-  $spongebob.draggable();
+  $spongebob.draggable({
+    revert: true
+  });
 
   // Get the mouth element from the page
   $mouth = $('#mouth');
