@@ -168,7 +168,7 @@ const NUM_OPTIONS = 5;
 
 // Variable that store the voice recognition command.
 let commandGiveUp;
-
+let commandSayAgain;
 
 // Get setup!
 $(document).ready(setup);
@@ -189,10 +189,19 @@ function setup() {
         newRound();
       }
     };
+
+    // When the voice input is "Say it again"...
+    commandSayAgain = {
+      'Say it again' : function () {
+        // Say the reversed animal name again.
+        speakAnimal(correctAnimal);
+      }
+    }
   }
 
   // Add the above command that annyang will respond to.
   annyang.addCommands(commandGiveUp, true);
+  annyang.addCommands(commandSayAgain, true);
   // Have annyang to start listening to the commands.
   annyang.start({ autoRestart: false });
 }
