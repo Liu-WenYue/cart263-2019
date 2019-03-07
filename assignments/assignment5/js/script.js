@@ -166,6 +166,10 @@ let answers = [];
 // How many possible answers there are per round
 const NUM_OPTIONS = 5;
 
+// Variable that store the voice recognition command.
+let commandGiveUp;
+
+
 // Get setup!
 $(document).ready(setup);
 
@@ -175,6 +179,22 @@ $(document).ready(setup);
 // to actually start the game.
 function setup() {
   $('#click-to-begin').on('click',startGame);
+
+  // If annyang is availble, when the voice input is "I give up"...
+  if(annyang) {
+    commandGiveUp = {
+      'I give up' : function () {
+        // Remove the current sets of buttons and start a new round.
+        $('.guess').remove();
+        newRound();
+      }
+    };
+  }
+
+  // Add the above command that annyang will respond to.
+  annyang.addCommands(commandGiveUp, true);
+  // Have annyang to start listening to the commands.
+  annyang.start({ autoRestart: false });
 }
 
 // startGame()
