@@ -170,9 +170,9 @@ const NUM_OPTIONS = 5;
 let commandGiveUp;
 let commandSayAgain;
 
-// Variables that store the number of animals found and the animal count.
-let numOfAnimalsFound = 0;
-let $animalCount;
+// Variables that store the number of scores and the score count.
+let numOfScores = 0;
+let $scoreCount;
 
 
 // Get setup!
@@ -185,8 +185,8 @@ $(document).ready(setup);
 function setup() {
   $('#click-to-begin').on('click',startGame);
 
-  // Save the selection of the animal-count in the variable.
-  $animalCount = $('#animal-count');
+  // Save the selection of the score-count in the variable.
+  $scoreCount = $('#score-count');
 
   // If annyang is availble, when the voice input is "I give up"...
   if(annyang) {
@@ -195,10 +195,10 @@ function setup() {
         // Remove the current sets of buttons and start a new round.
         $('.guess').remove();
         newRound();
-        // Once the user give up, the animal found will go back to zero.
-        numOfAnimalsFound = 0;
-        // Adds the number to the animal count.
-        $animalCount.text(numOfAnimalsFound);
+        // Once the user give up, the score will go back to zero.
+        numOfScores = 0;
+        // Adds the number to the score count.
+        $scoreCount.text(numOfScores);
       }
     };
 
@@ -299,11 +299,11 @@ function addButton(label) {
       // Start a new round
       setTimeout(newRound,1000);
 
-      // When the user found the correct animal, the number of animals found
+      // When the user found the correct animal, the score
       // increases by 1.
-      numOfAnimalsFound++;
-      // Adds the number to the animal count.
-      $animalCount.text(numOfAnimalsFound);
+      numOfScores++;
+      // Adds the number to the score count.
+      $scoreCount.text(numOfScores);
     }
     else {
       // Otherwise they were wrong, so shake the button
@@ -311,10 +311,10 @@ function addButton(label) {
       // And say the correct animal again to "help" them
       speakAnimal(correctAnimal);
 
-      // Once the user get wrong, the animal found will go back to zero.
-      numOfAnimalsFound = 0;
-      // Adds the number to the animal count.
-      $animalCount.text(numOfAnimalsFound);
+      // Once the user get wrong, the score will go back to zero.
+      numOfScores = 0;
+      // Adds the number to the score count.
+      $scoreCount.text(numOfScores);
     }
   });
 
