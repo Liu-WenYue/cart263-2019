@@ -215,7 +215,7 @@ function setup() {
   annyang.addCommands(commandGiveUp, true);
   annyang.addCommands(commandSayAgain, true);
   // Have annyang to start listening to the commands.
-  annyang.start({ autoRestart: false });
+  annyang.start();
 }
 
 // startGame()
