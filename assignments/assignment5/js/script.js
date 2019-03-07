@@ -170,6 +170,11 @@ const NUM_OPTIONS = 5;
 let commandGiveUp;
 let commandSayAgain;
 
+// Variables that store the number of animals found and the animal count.
+let numOfAnimalsFound = 0;
+let $animalCount;
+
+
 // Get setup!
 $(document).ready(setup);
 
@@ -180,6 +185,9 @@ $(document).ready(setup);
 function setup() {
   $('#click-to-begin').on('click',startGame);
 
+  // Save the selection of the animal-count in the variable.
+  $animalCount = $('#animal-count');
+
   // If annyang is availble, when the voice input is "I give up"...
   if(annyang) {
     commandGiveUp = {
@@ -187,6 +195,10 @@ function setup() {
         // Remove the current sets of buttons and start a new round.
         $('.guess').remove();
         newRound();
+        // Once the user give up, the animal found will go back to zero.
+        numOfAnimalsFound = 0;
+        // Adds the number to the animal count.
+        $animalCount.text(numOfAnimalsFound);
       }
     };
 
@@ -286,12 +298,23 @@ function addButton(label) {
       $('.guess').remove();
       // Start a new round
       setTimeout(newRound,1000);
+
+      // When the user found the correct animal, the number of animals found
+      // increases by 1.
+      numOfAnimalsFound++;
+      // Adds the number to the animal count.
+      $animalCount.text(numOfAnimalsFound);
     }
     else {
       // Otherwise they were wrong, so shake the button
       $(this).effect('shake');
       // And say the correct animal again to "help" them
       speakAnimal(correctAnimal);
+
+      // Once the user get wrong, the animal found will go back to zero.
+      numOfAnimalsFound = 0;
+      // Adds the number to the animal count.
+      $animalCount.text(numOfAnimalsFound);
     }
   });
 
