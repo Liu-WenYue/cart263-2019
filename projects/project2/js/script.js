@@ -18,5 +18,16 @@ please refer to the README.md file located in this project file.
 
 *********************************************************************/
 
-// Get setup!
-$(document).ready();
+// Variable that stores the starting scene of the game.
+let $gameStart;
+
+// Get the document setup!
+$(document).ready(function () {
+  // Save the game start gif in the variable.
+  $gameStart = $('#game-start');
+
+  // When the gif plays finish, change the gif to a freezeframe (end frame of the gif).
+  setTimeout(function() {
+    $gameStart.attr('src','assets/images/freezeframe.png');
+  }, 4900);
+});
