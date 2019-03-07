@@ -169,6 +169,7 @@ const NUM_OPTIONS = 5;
 // Variable that store the voice recognition command.
 let commandGiveUp;
 let commandSayAgain;
+let commandGuess;
 
 // Variables that store the number of scores and the score count.
 let numOfScores = 0;
@@ -192,6 +193,8 @@ function setup() {
   if(annyang) {
     commandGiveUp = {
       'I give up' : function () {
+        // Shake the correct answer when the user give up.
+        $('#' + correctAnimal).effect('shake');
         // Remove the current sets of buttons and start a new round.
         $('.guess').remove();
         newRound();
@@ -207,6 +210,37 @@ function setup() {
       'Say it again' : function () {
         // Say the reversed animal name again.
         speakAnimal(correctAnimal);
+      }
+    }
+
+    // When the voice input is "I think it is (answer)"...
+    commandGuess = {
+      'I think it is *answer' : function () {
+        // If the guess is the correct answer...
+        if ($('#' + answer).text() === correctAnimal) {
+          // Remove all the buttons
+          $('.guess').remove();
+          // Start a new round
+          setTimeout(newRound,1000);
+
+          // When the user found the correct animal, the score
+          // increases by 1.
+          numOfScores++;
+          // Adds the number to the score count.
+          $scoreCount.text(numOfScores);
+        }
+
+        else {
+          // Otherwise they were wrong, so shake the button
+          $(this).effect('shake');
+          // And say the correct animal again to "help" them
+          speakAnimal(correctAnimal);
+
+          // Once the user get wrong, the score will go back to zero.
+          numOfScores = 0;
+          // Adds the number to the score count.
+          $scoreCount.text(numOfScores);
+        }
       }
     }
   }
@@ -305,6 +339,7 @@ function addButton(label) {
       // Adds the number to the score count.
       $scoreCount.text(numOfScores);
     }
+
     else {
       // Otherwise they were wrong, so shake the button
       $(this).effect('shake');
