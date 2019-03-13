@@ -22,6 +22,11 @@ please refer to the README.md file located in this project file.
 let $gameStart;
 let $videoList;
 
+// Variable that stores the video that will be add to the main container.
+let choice;
+// Variable that stores the progress value.
+let progress = 1;
+
 // Arrays that store bad and good videos.
 let badVideos = [
   "assets/images/danger-v1.png",
@@ -71,7 +76,7 @@ $(document).ready(function () {
 
       // Circle progress bar.
       $('#circle').circleProgress({
-        value: 1,
+        value: progress,
         size: 80,
         fill: "tomato",
         thickness: 10,
@@ -80,5 +85,32 @@ $(document).ready(function () {
         animationStartValue: 0.0,
       });
     }
+
+    // When the circle progress bar ends...
+    $('#circle').on('circle-animation-end',function () {
+      // If the progress is equals to 1...
+      if (progress === 1) {
+        // The progress bar will redraw according to the properties I set above.
+        $(this).circleProgress('redraw');
+        // Calling function newRound.
+        newRound();
+      }
+    });
   })
 });
+
+// newRound()
+//
+// Function that randomize the videos in the video list and add the first video
+// in the main container.
+function newRound() {
+  // Random videos from the bad video array will be shown in the video list.
+  $('.video').each(function () {
+    let randomVideo = badVideos[Math.floor(Math.random() * badVideos.length)];
+    $(this).attr('src',randomVideo);
+  });
+
+  // The first video in the video list will be add to the main container.
+  choice = $('#video-list').first().find('img').attr('src');
+  $('#container-image').attr('src',choice);
+}
