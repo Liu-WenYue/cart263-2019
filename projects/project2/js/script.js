@@ -27,4 +27,13 @@ $(document).ready(function () {
   $gameStart = $('#game-start');
   // Have the gif play when the page is refreshed.
   $gameStart.attr('src','assets/images/start.gif');
+
+
+  $(document).on("keydown",function(e) {
+    // If W is pressed, the game start page will be removed, and the screen
+    // ui underneath will be visible.
+    if (e.keyCode === 87) {
+      $gameStart.remove();
+    }
+  })
 });
