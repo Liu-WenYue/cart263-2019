@@ -22,6 +22,34 @@ please refer to the README.md file located in this project file.
 let $gameStart;
 let $videoList;
 
+// Arrays that store bad and good videos.
+let badVideos = [
+  "assets/images/danger-v1.png",
+  "assets/images/danger-v2.png",
+  "assets/images/danger-v3.png",
+  "assets/images/danger-v4.png",
+  "assets/images/danger-v5.png",
+  "assets/images/danger-v6.png",
+  "assets/images/danger-v7.png",
+  "assets/images/danger-v8.png",
+  "assets/images/danger-v9.png",
+  "assets/images/danger-v10.png",
+  "assets/images/danger-v11.png",
+  "assets/images/danger-v12.png",
+  "assets/images/danger-v13.png",
+  "assets/images/danger-v14.png",
+];
+
+let goodVideos = [
+  "assets/images/safe-v1.png",
+  "assets/images/safe-v2.png",
+  "assets/images/safe-v3.png",
+  "assets/images/safe-v4.png",
+  "assets/images/safe-v5.png",
+  "assets/images/safe-v6.png",
+];
+
+
 // Get the document setup!
 $(document).ready(function () {
   // Save the game start gif in the variable.
