@@ -18,8 +18,9 @@ please refer to the README.md file located in this project file.
 
 *********************************************************************/
 
-// Variable that stores the starting scene of the game.
+// Variable that stores the starting scene of the game and video list.
 let $gameStart;
+let $videoList;
 
 // Get the document setup!
 $(document).ready(function () {
@@ -27,6 +28,11 @@ $(document).ready(function () {
   $gameStart = $('#game-start');
   // Have the gif play when the page is refreshed.
   $gameStart.attr('src','assets/images/start.gif');
+
+  // Save the video list in the varaible.
+  $videoList = $('#video-list');
+  // Have the video list sortable.
+  $videoList.sortable();
 
 
   $(document).on("keydown",function(e) {
