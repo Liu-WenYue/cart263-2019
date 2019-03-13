@@ -27,6 +27,13 @@ let choice;
 // Variable that stores the progress value.
 let progress = 1;
 
+// Variable that stores the starting chance of having a bad video.
+let badnessChance = 0.2;
+// Variable that stores the random probability of showing a video.
+let probability = Math.random();
+// Variable that stores the randomVideo.
+let randomVideo;
+
 // Arrays that store bad and good videos.
 let badVideos = [
   "assets/images/danger-v1.png",
@@ -106,11 +113,31 @@ $(document).ready(function () {
 function newRound() {
   // Random videos from the bad video array will be shown in the video list.
   $('.video').each(function () {
-    let randomVideo = badVideos[Math.floor(Math.random() * badVideos.length)];
+    // Calling function that decide the probability of good videos and bad videos
+    // in the random video list.
+    videoProbability();
     $(this).attr('src',randomVideo);
   });
 
   // The first video in the video list will be add to the main container.
   choice = $('#video-list').first().find('img').attr('src');
   $('#container-image').attr('src',choice);
+}
+
+// videoProbability()
+//
+// This function controls the probability of showing bad videos and good videos.
+function videoProbability () {
+  // The default value for badnessChance will be 0.2, this means,
+  // at the start of the game, there will be 20% chance showing bad videos and
+  // 80% chance showing good videos.
+  if (probability < badnessChance) {
+    randomVideo = badVideos[Math.floor(Math.random() * badVideos.length)];
+    // As more bad videos watched, the probability of having a bad video will
+    // increases by 5%.
+    badnessChance += 0.05;
+  }
+  else {
+    randomVideo = goodVideos[Math.floor(Math.random() * goodVideos.length)];
+  }
 }
