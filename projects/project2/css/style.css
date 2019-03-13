@@ -13,3 +13,25 @@ body {
   position: absolute;
   z-index: 3;
 }
+
+#video-list {
+  /* background: #000; */
+  padding-top: 5px;
+  margin-top: 5px;
+  width: 330px;
+  height: 600px;
+  position: absolute;
+  top: 80px;
+  right: 35px;
+  z-index: 4;
+  overflow: hidden;
+}
+
+.video {
+  /* background: #000; */
+  margin-left: -10px;
+  margin-top: 10px;
+  width: 200px;
+  height: 130px;
+  z-index: 3;
+}
