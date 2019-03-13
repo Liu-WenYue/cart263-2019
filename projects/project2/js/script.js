@@ -26,8 +26,4 @@ $(document).ready(function () {
   // Save the game start gif in the variable.
   $gameStart = $('#game-start');
 
-  // When the gif plays finish, change the gif to a freezeframe (end frame of the gif).
-  setTimeout(function() {
-    $gameStart.attr('src','assets/images/freezeframe.png');
-  }, 4900);
 });
