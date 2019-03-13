@@ -54,3 +54,11 @@ body {
   left: 260px;
   z-index: 4;
 }
+
+#circle {
+  /* background: #000; */
+  position: absolute;
+  top: 95px;
+  right: 490px;
+  z-index: 6;
+}

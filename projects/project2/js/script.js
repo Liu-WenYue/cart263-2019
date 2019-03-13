@@ -40,6 +40,17 @@ $(document).ready(function () {
     // ui underneath will be visible.
     if (e.keyCode === 87) {
       $gameStart.remove();
+
+      // Circle progress bar.
+      $('#circle').circleProgress({
+        value: 1,
+        size: 80,
+        fill: "tomato",
+        thickness: 10,
+        lineCap: "round",
+        animation: { duration: 4000 },
+        animationStartValue: 0.0,
+      });
     }
   })
 });
