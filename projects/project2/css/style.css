@@ -46,3 +46,11 @@ body {
   left: 85px;
   z-index: 4;
 }
+
+#brain {
+  position: absolute;
+  width: 600px;
+  top: 140px;
+  left: 260px;
+  z-index: 4;
+}
