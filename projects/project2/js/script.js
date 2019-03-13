@@ -133,11 +133,11 @@ function videoProbability () {
   // 80% chance showing good videos.
   if (probability < badnessChance) {
     randomVideo = badVideos[Math.floor(Math.random() * badVideos.length)];
-    // As more bad videos watched, the probability of having a bad video will
-    // increases by 5%.
-    badnessChance += 0.05;
   }
   else {
     randomVideo = goodVideos[Math.floor(Math.random() * goodVideos.length)];
+    // As there are more videos watched, the probability of having a bad video
+    // will increases by 5%.
+    badnessChance += 0.05;
   }
 }
