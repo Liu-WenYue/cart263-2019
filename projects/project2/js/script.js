@@ -25,5 +25,6 @@ let $gameStart;
 $(document).ready(function () {
   // Save the game start gif in the variable.
   $gameStart = $('#game-start');
-
+  // Have the gif play when the page is refreshed.
+  $gameStart.attr('src','assets/images/start.gif');
 });
