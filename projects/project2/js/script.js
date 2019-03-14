@@ -34,6 +34,9 @@ let probability = Math.random();
 // Variable that stores the randomVideo.
 let randomVideo;
 
+// Variable that stores the starting opacity of the tint on the brain image.
+let opacity = 0;
+
 // Arrays that store bad and good videos.
 let badVideos = [
   "assets/images/danger-v1.png",
@@ -133,6 +136,7 @@ function videoProbability () {
   // 80% chance showing good videos.
   if (probability < badnessChance) {
     randomVideo = badVideos[Math.floor(Math.random() * badVideos.length)];
+    updateFilters(document.getElementById('brain'));
   }
   else {
     randomVideo = goodVideos[Math.floor(Math.random() * goodVideos.length)];
@@ -140,4 +144,39 @@ function videoProbability () {
     // will increases by 5%.
     badnessChance += 0.05;
   }
+}
+
+// updateFilters(img)
+//
+// Function that refresh filters after various actions have been performed.
+// This part of the code is from the paintbrush.js library.
+function updateFilters(img) {
+  console.log(img);
+
+	// first, does the reference object have an original image in the DOM?
+	var classList = (img.className.toLowerCase()).split(' ');
+	for (var i = 0; i < classList.length; i++) {
+
+		// quick reference
+		var currentClass = classList[i];
+
+		// okay, we're good, there's an original
+		if (currentClass.substr(0, 7) == "pb-ref-") {
+
+			// clear reference object's data-pb-* attributes
+			flushDataAttributes(img);
+
+			// go fetch the original and update the reference object source
+			var original = document.getElementById("pb-original-" + currentClass.substr(7, currentClass.length - 7));
+			placeReferenceImage(img, original.src, img);
+			img.style.visibility = "hidden";
+
+      // add the opacity attributes to our image.
+      addAttribute(img, "data-pb-tint-opacity", opacity);
+		}
+	}
+
+	// finally, apply the filters and have the image visiable.
+	processFilters();
+	img.style.visibility = "visible";
 }
