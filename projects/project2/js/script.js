@@ -27,18 +27,14 @@ let choice;
 // Variable that stores the progress value.
 let progress = 1;
 
-// Variable that stores the starting chance of having a bad video.
-let badnessChance = 0.2;
-// Variable that stores the random probability of showing a video.
-let probability = Math.random();
 // Variable that stores the randomVideo.
 let randomVideo;
 
 // Variable that stores the starting opacity of the tint on the brain image.
 let opacity = 0;
 
-// Arrays that store bad and good videos.
-let badVideos = [
+// Array that store bad and good videos.
+let videos = [
   "assets/images/danger-v1.png",
   "assets/images/danger-v2.png",
   "assets/images/danger-v3.png",
@@ -53,9 +49,6 @@ let badVideos = [
   "assets/images/danger-v12.png",
   "assets/images/danger-v13.png",
   "assets/images/danger-v14.png",
-];
-
-let goodVideos = [
   "assets/images/safe-v1.png",
   "assets/images/safe-v2.png",
   "assets/images/safe-v3.png",
@@ -119,28 +112,9 @@ function newRound() {
   $('.video').each(function () {
     // Calling function that decide the probability of good videos and bad videos
     // in the random video list.
-    videoProbability();
+    randomVideo = videos[Math.floor(Math.random() * videos.length)];
     $(this).attr('src',randomVideo);
   });
-}
-
-// videoProbability()
-//
-// This function controls the probability of showing bad videos and good videos.
-function videoProbability () {
-  // The default value for badnessChance will be 0.2, this means,
-  // at the start of the game, there will be 20% chance showing bad videos and
-  // 80% chance showing good videos.
-  if (probability < badnessChance) {
-    randomVideo = badVideos[Math.floor(Math.random() * badVideos.length)];
-    updateFilters(document.getElementById('brain'));
-  }
-  else {
-    randomVideo = goodVideos[Math.floor(Math.random() * goodVideos.length)];
-    // As there are more videos watched, the probability of having a bad video
-    // will increases by 5%.
-    badnessChance += 0.05;
-  }
 }
 
 // updateFilters(img)
