@@ -6,7 +6,7 @@ body {
 
 #game-start {
   position: absolute;
-  z-index: 5;
+  z-index: 7;
 }
 
 #ui {
@@ -62,8 +62,16 @@ body {
 
 #brain {
   position: absolute;
-  width: 600px;
-  top: 140px;
+  width: 500px;
+  top: 170px;
+  left: 320px;
+  z-index: 5;
+}
+
+#girl-back {
+  position: absolute;
+  width: 620px;
+  top: 125px;
   left: 260px;
   z-index: 4;
 }
