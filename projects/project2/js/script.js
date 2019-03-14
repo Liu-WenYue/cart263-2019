@@ -33,6 +33,7 @@ let randomVideo;
 // Variable that stores the starting opacity of the tint on the brain image.
 let opacity = 0;
 
+
 // Array that store bad and good videos.
 let videos = [
   "assets/images/danger-v1.png",
@@ -108,6 +109,16 @@ function newRound() {
   choice = $('#video-list').first().find('img').attr('src');
   $('#container-image').attr('src',choice);
 
+  // If the word starting from the 14th character in the choice address
+  // is the same as the word danger...(also means the image in the container
+  // is a bad video)
+  if (choice.indexOf('danger') === 14) {
+    // The brain's opacity increases by 0.1
+    opacity += 0.1;
+    // Update filters on the brain.
+    updateFilters(document.getElementById('brain'));
+  }
+
   // Random videos from the bad video array will be shown in the video list.
   $('.video').each(function () {
     // Calling function that decide the probability of good videos and bad videos
@@ -144,6 +155,7 @@ function updateFilters(img) {
 
       // add the opacity attributes to our image.
       addAttribute(img, "data-pb-tint-opacity", opacity);
+      addAttribute(img, "data-pb-tint-colour", "#000000");
 		}
 	}
 

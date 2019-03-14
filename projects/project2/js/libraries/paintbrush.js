@@ -16,10 +16,11 @@
 
 
 // basic loader function to attach all filters used within the page
-addLoadEvent(function() {
-	processFilters();
+(function() {
+	addLoadEvent(function() {
+		processFilters();
+	});
 });
-
 
 
 // function to process all filters
@@ -87,7 +88,7 @@ function addFilter(filterType, buffer, c) {
 			var pixels = initializeBuffer(c, img);
 
 			if (pixels) {
-				//					
+				//
 				// pre-processing for various filters
 				//
 				// blur and all matrix filters have to exist outside the main loop
@@ -139,7 +140,7 @@ function addFilter(filterType, buffer, c) {
 					    dest = {r: ((src & 0xFF0000) >> 16), g: ((src & 0x00FF00) >> 8), b: (src & 0x0000FF)};
 				}
 
-				if ((filterType != "filter-blur") 
+				if ((filterType != "filter-blur")
 					&& (filterType != "filter-emboss")
 					&& (filterType != "filter-matrix")
 					&& (filterType != "filter-sharpen")
@@ -148,22 +149,22 @@ function addFilter(filterType, buffer, c) {
 					// (data is per-byte, and there are 4 bytes per pixel, so lets only loop through each pixel and save a few cycles)
 					for (var i = 0, data = pixels.data, length = data.length; i < length >> 2; i++) {
 						var index = i << 2;
-			
+
 						// get each colour value of current pixel
 						var thisPixel = {r: data[index], g: data[index + 1], b: data[index + 2]};
-			
+
 						// the biggie: if we're here, let's get some filter action happening
 						pixels = applyFilters(filterType, params, img, pixels, index, thisPixel, dest);
 					}
 				}
-		
+
 				// redraw the pixel data back to the working buffer
 				c.putImageData(pixels, 0, 0);
-				
+
 
 				// stash a copy and let the original know how to reference it
 				stashOriginal(img, originalSuffix, ref, buffer);
-			
+
 			}
 		}
 	}
@@ -176,12 +177,12 @@ function addFilter(filterType, buffer, c) {
 		var data = pixels.data, val;
 		var imgWidth = img.width;
 
-		// figure out which filter to apply, and do it	
+		// figure out which filter to apply, and do it
 		switch(filterType) {
 
 			case "filter-greyscale":
 				val = (thisPixel.r * 0.21) + (thisPixel.g * 0.71) + (thisPixel.b * 0.07);
-				data = setRGB(data, index, 
+				data = setRGB(data, index,
 					findColorDifference(params.greyscaleOpacity, val, thisPixel.r),
 					findColorDifference(params.greyscaleOpacity, val, thisPixel.g),
 					findColorDifference(params.greyscaleOpacity, val, thisPixel.b));
@@ -209,12 +210,12 @@ function addFilter(filterType, buffer, c) {
 				val = noise(params.noiseAmount);
 
 				if ((params.noiseType == "mono") || (params.noiseType == "monochrome")) {
-					data = setRGB(data, index, 
+					data = setRGB(data, index,
 						checkRGBBoundary(thisPixel.r + val),
 						checkRGBBoundary(thisPixel.g + val),
 						checkRGBBoundary(thisPixel.b + val));
 				} else {
-					data = setRGB(data, index, 
+					data = setRGB(data, index,
 						checkRGBBoundary(thisPixel.r + noise(params.noiseAmount)),
 						checkRGBBoundary(thisPixel.g + noise(params.noiseAmount)),
 						checkRGBBoundary(thisPixel.b + noise(params.noiseAmount)));
@@ -222,21 +223,21 @@ function addFilter(filterType, buffer, c) {
 				break;
 
 			case "filter-posterize":
-				data = setRGB(data, index, 
+				data = setRGB(data, index,
 					findColorDifference(params.posterizeOpacity, parseInt(params.posterizeValues * parseInt(thisPixel.r / params.posterizeAreas)), thisPixel.r),
 					findColorDifference(params.posterizeOpacity, parseInt(params.posterizeValues * parseInt(thisPixel.g / params.posterizeAreas)), thisPixel.g),
 					findColorDifference(params.posterizeOpacity, parseInt(params.posterizeValues * parseInt(thisPixel.b / params.posterizeAreas)), thisPixel.b));
 				break;
 
 			case "filter-sepia":
-				data = setRGB(data, index, 
+				data = setRGB(data, index,
 					findColorDifference(params.sepiaOpacity, (thisPixel.r * 0.393) + (thisPixel.g * 0.769) + (thisPixel.b * 0.189), thisPixel.r),
 					findColorDifference(params.sepiaOpacity, (thisPixel.r * 0.349) + (thisPixel.g * 0.686) + (thisPixel.b * 0.168), thisPixel.g),
 					findColorDifference(params.sepiaOpacity, (thisPixel.r * 0.272) + (thisPixel.g * 0.534) + (thisPixel.b * 0.131), thisPixel.b));
 				break;
 
 			case "filter-tint":
-				data = setRGB(data, index, 
+				data = setRGB(data, index,
 					findColorDifference(params.tintOpacity, dest.r, thisPixel.r),
 					findColorDifference(params.tintOpacity, dest.g, thisPixel.g),
 					findColorDifference(params.tintOpacity, dest.b, thisPixel.b));
@@ -253,7 +254,7 @@ function addFilter(filterType, buffer, c) {
 
 		// create a second buffer to hold matrix results
 		var buffer2 = document.createElement("canvas");
-		// get the canvas context 
+		// get the canvas context
 		var c2 = buffer2.getContext('2d');
 
 		// set the dimensions
@@ -274,7 +275,7 @@ function addFilter(filterType, buffer, c) {
 		var matrixSize = Math.sqrt(matrix.length);
 		// also store the size of the kernel radius (half the size of the matrix)
 		var kernelRadius = Math.floor(matrixSize / 2);
-		
+
 		// loop through every pixel
 		for (var i = 1; i < imgWidth - 1; i++) {
 			for (var j = 1; j < img.height - 1; j++) {
@@ -310,9 +311,9 @@ function addFilter(filterType, buffer, c) {
 							g: data[ref + 1],
 							b: data[ref + 2]
 						};
-				
+
 				// finally, apply the adjusted values
-				data = setRGB(data, ref, 
+				data = setRGB(data, ref,
 					findColorDifference(amount, sumR, thisPixel.r),
 					findColorDifference(amount, sumG, thisPixel.g),
 					findColorDifference(amount, sumB, thisPixel.b));
@@ -347,7 +348,7 @@ function addFilter(filterType, buffer, c) {
 	function noise(noiseValue) {
 		return Math.floor((noiseValue >> 1) - (Math.random() * noiseValue));
 	}
-	
+
 	// ensure an RGB value isn't negative / over 255
 	function checkRGBBoundary(val) {
 		if (val < 0) {
@@ -384,12 +385,12 @@ function getFilterParameters(ref) {
 		"tintColor"			:	"#FFF",	// any hex color
 		"tintOpacity"		:	0.3		// between 0 and 1
 	};
-	
+
 	// check for every attribute, throw it into the params object if it exists.
 	for (var filterName in params){
 		// "tintColor" ==> "data-pb-tint-color"
-		var hyphenated = filterName.replace(/([A-Z])/g, function(all, letter) {  
-			return '-' + letter.toLowerCase(); 
+		var hyphenated = filterName.replace(/([A-Z])/g, function(all, letter) {
+			return '-' + letter.toLowerCase();
 		}),
 		attr = ref.getAttribute("data-pb-" + hyphenated);
 		if (attr) {
@@ -419,14 +420,14 @@ function initializeBuffer(c, img) {
 
 		try {
 			// draw the image to buffer and load its pixels into an array
-			//   (remove the last two arguments on this function if you choose not to 
+			//   (remove the last two arguments on this function if you choose not to
 			//    respect width/height attributes and want the original image dimensions instead)
 			c.drawImage(img, 0, 0, img.width , img.height);
 			return(c.getImageData(0, 0, c.width, c.height));
 
 		} catch(err) {
 			// it's kinda strange, I'm explicitly checking for width/height above, but some attempts
-			// throw an INDEX_SIZE_ERR as if I'm trying to draw a 0x0 or negative image, as per 
+			// throw an INDEX_SIZE_ERR as if I'm trying to draw a 0x0 or negative image, as per
 			// http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html#images
 			//
 			// AND YET, if I simply catch the exception, the filters render anyway and all is well.
@@ -469,11 +470,11 @@ function getReferenceImage(ref) {
 	if (ref.nodeName == "IMG") {
 		// create a reference to the image
 		return ref;
-	} 
-	
+	}
+
 	// otherwise check if a background image exists
 	var bg = window.getComputedStyle(ref, null).backgroundImage;
-	
+
 	// if so, we're going to pull it out and create a new img element in the DOM
 	if (bg) {
 		var img = new Image();
@@ -494,7 +495,7 @@ function placeReferenceImage(ref, result, img) {
 		ref.style.backgroundImage = "url(" + result + ")";
 	}
 }
-	
+
 // add specified attribute name with specified value to passed object
 function addAttribute(obj, name, value) {
 	var newAttr = document.createAttribute(name);
@@ -541,7 +542,7 @@ function destroyStash(img, preserve) {
 
 			// get the original object too
 			var original = document.getElementById("pb-original-" + currentClass.substr(7, currentClass.length - 7));
-			
+
 			// replace current with original if the preserve flag is set
 			if (preserve) {
 				img.src = original.src;
@@ -549,13 +550,13 @@ function destroyStash(img, preserve) {
 
 			// kill them, kill them all
 			removeClass(img, currentClass);
-			
+
 			d = document.body;
 			throwaway = d.removeChild(original);
 
 		}
 	}
-	
+
 }
 
 function stashOriginal(img, originalSuffix, ref, buffer) {
@@ -565,7 +566,7 @@ function stashOriginal(img, originalSuffix, ref, buffer) {
 
 	// then replace the original image data with the buffer
 	placeReferenceImage(ref, buffer.toDataURL("image/png"), img);
-	
+
 	// and finally, add a class that references the stashed original image for later use
 	// (but only if we actually stashed one above)
 	if (stashed) {
@@ -575,7 +576,7 @@ function stashOriginal(img, originalSuffix, ref, buffer) {
 
 // stash a copy of the original image in the DOM for later use
 function stashInDom(img, originalSuffix) {
-	
+
 	var orig = "pb-original-" + originalSuffix;
 
 	// make sure we're not re-adding on repeat calls
@@ -589,7 +590,7 @@ function stashInDom(img, originalSuffix) {
 		original.id = orig;
 		original.style.display = "none";
 		document.body.appendChild(original);
-		
+
 		return true;
 	} else {
 		return false;
