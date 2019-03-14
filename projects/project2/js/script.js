@@ -114,6 +114,10 @@ $(document).ready(function () {
 // Function that randomize the videos in the video list and add the first video
 // in the main container.
 function newRound() {
+  // The first video in the video list will be add to the main container.
+  choice = $('#video-list').first().find('img').attr('src');
+  $('#container-image').attr('src',choice);
+
   // Random videos from the bad video array will be shown in the video list.
   $('.video').each(function () {
     // Calling function that decide the probability of good videos and bad videos
@@ -121,10 +125,6 @@ function newRound() {
     videoProbability();
     $(this).attr('src',randomVideo);
   });
-
-  // The first video in the video list will be add to the main container.
-  choice = $('#video-list').first().find('img').attr('src');
-  $('#container-image').attr('src',choice);
 }
 
 // videoProbability()
