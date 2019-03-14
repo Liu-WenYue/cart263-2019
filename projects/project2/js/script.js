@@ -75,10 +75,9 @@ $(document).ready(function () {
   $videoList.sortable();
 
 
-  $(document).on("keydown",function(e) {
-    // If W is pressed, the game start page will be removed, and the screen
-    // ui underneath will be visible.
-    if (e.keyCode === 87) {
+  $(document).on("click",function() {
+    // If player clicks on the screen, the game start page will be removed,
+    // and the screen ui underneath will be visible.
       $gameStart.remove();
 
       // Circle progress bar.
@@ -91,7 +90,6 @@ $(document).ready(function () {
         animation: { duration: 4000 },
         animationStartValue: 0.0,
       });
-    }
 
     // When the circle progress bar ends...
     $('#circle').on('circle-animation-end',function () {
