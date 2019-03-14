@@ -98,13 +98,10 @@ $(document).ready(function () {
 
     // When the circle progress bar ends...
     $('#circle').on('circle-animation-end',function () {
-      // If the progress is equals to 1...
-      if (progress === 1) {
-        // The progress bar will redraw according to the properties I set above.
-        $(this).circleProgress('redraw');
-        // Calling function newRound.
-        newRound();
-      }
+      // The progress bar will redraw according to the properties I set above.
+      $(this).circleProgress('redraw');
+      // Calling function newRound.
+      newRound();
     });
   })
 });
