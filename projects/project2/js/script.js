@@ -33,6 +33,9 @@ let randomVideo;
 // Variable that stores the starting opacity of the tint on the brain image.
 let opacity = 0;
 
+// Variable that stores the command.
+let commandPlay;
+
 
 // Array that store bad and good videos.
 let videos = [
@@ -98,6 +101,14 @@ $(document).ready(function () {
       newRound();
     });
   })
+
+  // Calls the goodEnding here to check if the player says the command.
+  goodEnding()
+
+  // Add the above command that annyang will respond to.
+  annyang.addCommands(commandPlay, true);
+  // Have annyang to start listening to the commands.
+  annyang.start();
 });
 
 // newRound()
@@ -117,6 +128,9 @@ function newRound() {
     opacity += 0.1;
     // Update filters on the brain.
     updateFilters(document.getElementById('brain'));
+
+    // Calls the badEnding here.
+    badEnding();
   }
 
   // Random videos from the bad video array will be shown in the video list.
@@ -162,4 +176,33 @@ function updateFilters(img) {
 	// finally, apply the filters and have the image visiable.
 	processFilters();
 	img.style.visibility = "visible";
+}
+
+// badEnding()
+//
+// function that have the conditional statement for the bad ending.
+function badEnding() {
+  // When the tint on the brain img reaches 1, shows the bad ending.
+  if (opacity >= 1) {
+    document.getElementById('bad-end').style.display = "block";
+    document.getElementById('bad-end').style.zIndex = "100";
+    console.log("bad-end");
+  }
+}
+
+// goodEnding()
+//
+// This functions includes Annyang that listen to player's voice,
+// It shows the good ending gif when the player ask the girl to play.
+function goodEnding() {
+  // If annyang is availble, when the voice input is "Do you want to play",
+  // shows the good ending.
+  if (annyang) {
+      commandPlay = {
+      'Do you want to play' : function () {
+        document.getElementById('good-end').style.display = "block";
+        document.getElementById('good-end').style.zIndex = "100";
+      }
+    };
+  }
 }

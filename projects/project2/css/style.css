@@ -9,6 +9,18 @@ body {
   z-index: 7;
 }
 
+#bad-end {
+  position: absolute;
+  z-index: 4;
+  display: none;
+}
+
+#good-end {
+  position: absolute;
+  z-index: 4;
+  display: none;
+}
+
 #ui {
   position: absolute;
   z-index: 3;

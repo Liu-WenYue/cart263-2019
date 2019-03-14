@@ -24,9 +24,9 @@ body {
 	color: #949cac;
 	text-shadow: rgba(0, 0, 0, 0.6) 0 -1px 0;
 	background-color: #30363c;
-	background-image: 
+	/* background-image:
 		url(../images/site/bg-highlight.png),
-		url(../images/site/bg.jpg);
+		url(../images/site/bg.jpg); */
 	background-repeat: repeat-x, repeat;
 	background-position: 50% 0, 50% 0;
 }
@@ -292,7 +292,7 @@ header aside {
 	-webkit-box-shadow: rgba(0, 0, 0, 0.66) 0 2px 3px;
 	-moz-box-shadow: rgba(0, 0, 0, 0.66) 0 2px 3px;
 	box-shadow: rgba(0, 0, 0, 0.66) 0 2px 3px;
-	
+
 	-webkit-transition: -webkit-box-shadow, opacity 0.25s linear;
 }
 	#description aside a:hover, #description aside a:focus {
