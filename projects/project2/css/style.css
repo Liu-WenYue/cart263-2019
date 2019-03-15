@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
 body {
   padding: 0;
   margin: 0;
@@ -24,6 +26,16 @@ body {
 #ui {
   position: absolute;
   z-index: 3;
+}
+
+p {
+  position: absolute;
+  z-index: 3;
+  color: white;
+  font-family: 'Indie Flower', cursive;
+  font-size: 10px;
+  top: 2px;
+  left: 15px;
 }
 
 #video-list {
