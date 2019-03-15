@@ -89,7 +89,7 @@ $(document).ready(function () {
         fill: "tomato",
         thickness: 10,
         lineCap: "round",
-        animation: { duration: 4000 },
+        animation: { duration: 2000 },
         animationStartValue: 0.0,
       });
 
