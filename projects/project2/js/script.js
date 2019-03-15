@@ -79,6 +79,8 @@ $(document).ready(function () {
     // If player clicks on the screen, the game start page will be removed,
     // and the screen ui underneath will be visible.
       $gameStart.remove();
+      // The background music starts to play.
+      backgroundMusic();
 
       // Circle progress bar.
       $('#circle').circleProgress({
@@ -184,7 +186,8 @@ function badEnding() {
   if (opacity >= 1) {
     document.getElementById('bad-end').style.display = "block";
     document.getElementById('bad-end').style.zIndex = "100";
-    console.log("bad-end");
+    // Stops the bgm.
+    bgm.pause();
   }
 }
 
@@ -200,7 +203,18 @@ function goodEnding() {
       'Do you want to play' : function () {
         document.getElementById('good-end').style.display = "block";
         document.getElementById('good-end').style.zIndex = "100";
+        // Stops the bgm.
+        bgm.pause();
       }
     };
   }
+}
+
+// backgroundMusic()
+//
+// To handle the background music.
+function backgroundMusic() {
+  bgm.loop = true;
+  bgm.volume = 1;
+  bgm.play();
 }
