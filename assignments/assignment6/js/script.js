@@ -55,10 +55,13 @@ function gotData(data) {
   // Same again for room
   let room = getRandomElement(data.rooms);
 
+  // Get a random isms from the isms array in the JSON file.
+  let isms = getRandomElement(data.isms);
+
   // Now we can construct our description with a template string
   // We have the basic structure of a sentence and we substitute in the
   // values we've just calculated
-  let description = `${condiment} ${verb} like a ${cat} in a ${room}.`;
+  let description = `${condiment} ${verb} like a ${isms} ${cat} in a ${room}.`;
 
   // Finally, we add it to the page and hey presto!
   $('body').append(description)
