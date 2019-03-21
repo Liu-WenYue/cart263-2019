@@ -16,7 +16,9 @@ http://rednoise.org/rita/index.html
 
 */
 
-let vowels = "aeiou";
+// let vowels = "aeiou";
+// let vowels = ["a","e","i","o","u"];
+
 
 $(document).ready(function() {
 
@@ -58,10 +60,26 @@ function gotData(data) {
   // Get a random isms from the isms array in the JSON file.
   let isms = getRandomElement(data.isms);
 
+  // Have the default article be a.
+  let articleFirst = 'a';
+  let articleSecond = 'a';
+  // Check if the first letter of isms is vowel alphabet.
+  // if (isms.charAt(0) === 'a' || isms.charAt(0) === 'e' || isms.charAt(0) === 'i' || isms.charAt(0) === 'o' || isms.charAt(0) === 'u') {
+  if (isms.charAt(0) === 'a' || isms.charAt(0) === 'e' || isms.charAt(0) === 'i' || isms.charAt(0) === 'o' || isms.charAt(0) === 'u') {
+    // If so, assume it's should start with an.
+    articleFirst = 'an';
+  }
+
+  // Check if the first letter of room is vowel alphabet.
+  if (room.charAt(0) === 'a' || room.charAt(0) === 'e' || room.charAt(0) === 'i' || room.charAt(0) === 'o' || room.charAt(0) === 'u') {
+    // If so, assume it's should start with an.
+    articleSecond = 'an';
+  }
+
   // Now we can construct our description with a template string
   // We have the basic structure of a sentence and we substitute in the
   // values we've just calculated
-  let description = `${condiment} ${verb} like a ${isms} ${cat} in a ${room}.`;
+  let description = `${condiment} ${verb} like ${articleFirst} ${isms} ${cat} in ${articleSecond} ${room}.`;
 
   // Finally, we add it to the page and hey presto!
   $('body').append(description)
