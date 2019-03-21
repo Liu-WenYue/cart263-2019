@@ -24,7 +24,7 @@ const RELEASE = 0.1;
 // We can get the frequencies of these notes from THE INTERNET, e.g.
 // http://pages.mtu.edu/~suits/notefreqs.html
 let frequencies = [
-  220,246.94,277.18,293.66,329.63,369.99,415.30
+  220, 246.94, 277.18, 293.66, 329.63, 369.99, 415.30, 0
 ];
 // The synth
 let synth;
@@ -32,6 +32,7 @@ let synth;
 let kick;
 let snare;
 let hihat;
+
 // Our drum pattern
 // Each array element is one beat and has a string with each
 // drum to play for that beat
