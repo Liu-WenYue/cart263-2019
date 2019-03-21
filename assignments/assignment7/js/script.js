@@ -86,8 +86,8 @@ function setup() {
 // Using this to start the note and drum sequences to get around
 // user interaction (and to give the files time to load)
 function mousePressed() {
-  // Start an interval for the notes
-  setInterval(playNote,NOTE_TEMPO);
+  // Start an interval for the notes, had the notes play on random tempo.
+  setInterval(playNote,random(0,1.2)*NOTE_TEMPO);
   // Start an interval for the drums
   setInterval(playDrum,DRUM_TEMPO);
 }
