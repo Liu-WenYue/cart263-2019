@@ -58,6 +58,22 @@ function setup() {
     }
   });
 
+  // Sets the synth's volume and the value for fade in and fade out.
+  synth.volume = 0.5;
+  synth.attack = 0.5;
+  synth.release = 1;
+
+  // Added the flanger effect to the synth.
+  var flanger = new Pizzicato.Effects.Flanger({
+    time: 0.45,
+    speed: 0.2,
+    depth: 0.1,
+    feedback: 0.1,
+    mix: 0.5
+  });
+
+  synth.addEffect(flanger);
+
   // Load the three drum sounds as wav files
   kick = new Pizzicato.Sound({
     source: 'file',
@@ -65,6 +81,13 @@ function setup() {
       path: 'assets/sounds/kick.wav'
     }
   });
+
+  // Added distortion on the kick.
+  var distortion = new Pizzicato.Effects.Distortion({
+      gain: 0.4
+  });
+
+  kick.addEffect(distortion);
 
   snare = new Pizzicato.Sound({
     source: 'file',
