@@ -52,6 +52,12 @@ let playNoteState = false;
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
+  // Instrcutions for the viewers.
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  text("Click anywhere to start the music!",windowWidth/2,windowHeight/2);
+  console.log(text);
+
   // Create the synth
   synth = new Pizzicato.Sound({
     source: 'wave',
@@ -123,6 +129,8 @@ function mousePressed() {
     // Set the playNoteState to true so that the playNote and the playDrum
     // will not be called multiple times.
     playNoteState = true;
+    // To clear the text on screen by adding a white screen when music starts.
+    background(255);
   }
 }
 
