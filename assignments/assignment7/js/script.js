@@ -41,6 +41,11 @@ let pattern = ['x','*','xo*',' ','x','x','xo','*'];
 // Which beat of the pattern we're at right now
 let patternIndex = 0;
 
+// Variable that stores the state of the playNote state,
+// have it at the false state at default.
+let playNoteState = false;
+
+
 // setup()
 //
 // Creat canvas, set up the synth and sound files.
@@ -109,10 +114,16 @@ function setup() {
 // Using this to start the note and drum sequences to get around
 // user interaction (and to give the files time to load)
 function mousePressed() {
-  // Start an interval for the notes, had the notes play on random tempo.
-  setInterval(playNote,random(0,1.2)*NOTE_TEMPO);
-  // Start an interval for the drums
-  setInterval(playDrum,DRUM_TEMPO);
+  // If the playNoteState is at false...
+  if (playNoteState === false) {
+    // Start an interval for the notes, had the notes play on random tempo.
+    setInterval(playNote,NOTE_TEMPO);
+    // Start an interval for the drums
+    setInterval(playDrum,DRUM_TEMPO);
+    // Set the playNoteState to true so that the playNote and the playDrum
+    // will not be called multiple times.
+    playNoteState = true;
+  }
 }
 
 // playNote
