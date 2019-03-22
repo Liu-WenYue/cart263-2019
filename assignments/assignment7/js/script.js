@@ -116,8 +116,8 @@ function setup() {
 function mousePressed() {
   // If the playNoteState is at false...
   if (playNoteState === false) {
-    // Start an interval for the notes, had the notes play on random tempo.
-    setInterval(playNote,NOTE_TEMPO);
+    // Use setTimeout for the notes to randomize the duration for each note.
+    setTimeout(playNote,random(200,400));
     // Start an interval for the drums
     setInterval(playDrum,DRUM_TEMPO);
     // Set the playNoteState to true so that the playNote and the playDrum
@@ -136,6 +136,8 @@ function playNote() {
   synth.frequency = frequency;
   // If it's note already play, play the synth
   synth.play();
+  // To have the playNote loop.
+  setTimeout(playNote,random(200,500));
 }
 
 // playDrum()
