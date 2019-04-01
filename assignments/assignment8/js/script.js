@@ -15,6 +15,10 @@ let scene;
 let camera;
 let renderer;
 
+// Variable that stores the plane geomotry.
+let plane;
+
+
 // Get the document set up.
 $(document).ready(function() {
   // Create a new scene, a perspective camera and a WEBGL renderer.
@@ -27,4 +31,19 @@ $(document).ready(function() {
 
   // Add the renderer element to the html document.
   document.body.appendChild(renderer.domElement);
+
+  // Add plane geometry and material.
+  let planeGeometry = new THREE.PlaneGeometry(10,10,1,1);
+  let planeMaterial = new THREE.MeshBasicMaterial({color:0xcccccc});
+  // Create plane using plane geometry and material.
+  plane = new THREE.Mesh(planeGeometry, planeMaterial);
+
+  // Add the plane to the scene.
+  scene.add(plane);
+
+  // Set the camera z position.
+  camera.position.z = 10;
+
+  // Render the renderer.
+  renderer.render(scene, camera);
 })
