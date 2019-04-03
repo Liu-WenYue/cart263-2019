@@ -20,6 +20,9 @@ let renderer;
 // Variable that stores the plane geomotry.
 let plane;
 
+// Variable that stores the ambient light for the scene.
+let ambientLight;
+
 
 // Get the document set up.
 $(document).ready(function() {
@@ -78,6 +81,11 @@ $(document).ready(function() {
         console.log( 'An error happened' );
       });
   });
+
+  // Create the ambient light and give it a white color.
+  ambientLight = new THREE.AmbientLight(0xffffff);
+  // Add ambient light to the scene.
+  scene.add(ambientLight);
 
   // Set the camera z position.
   camera.position.z = 10;
