@@ -2,11 +2,13 @@
 
 /*****************
 
-Title of Project
-Author Name
+Assignemnt 8
+Liu WenYue
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+
+
+The 3d model used in this prototype is from the following website.
+https://www.turbosquid.com/FullPreview/Index.cfm/ID/1008420
 
 ******************/
 
