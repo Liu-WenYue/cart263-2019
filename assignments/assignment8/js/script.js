@@ -45,6 +45,9 @@ $(document).ready(function() {
   let planeMaterial = new THREE.MeshBasicMaterial({color:0xcccccc});
   // Create plane using plane geometry and material.
   plane = new THREE.Mesh(planeGeometry, planeMaterial);
+  // Rotate the plane.
+  plane.rotation.x = -45;
+  plane.rotation.z = 30;
 
   // Add the plane to the scene.
   scene.add(plane);
@@ -69,6 +72,10 @@ $(document).ready(function() {
       // called when resource is loaded
       function ( object ) {
         scene.add( object );
+
+        // Scale and rotate the tree.
+        object.scale.set(.3,.3,.3);
+        object.rotation.y = 40;
       },
 
       // called when loading is in progresses
