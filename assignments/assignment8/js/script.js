@@ -7,8 +7,6 @@ Liu WenYue
 
 
 
-The 3d model used in this prototype is from the following website.
-https://www.turbosquid.com/FullPreview/Index.cfm/ID/1008420
 
 ******************/
 
@@ -55,7 +53,7 @@ $(document).ready(function() {
   let mtlLoader = new THREE.MTLLoader();
   // Load the material.
   mtlLoader.setPath('assets/models/');
-  mtlLoader.load('tree.mtl', function(materials) {
+  mtlLoader.load('tree-v6.mtl', function(materials) {
     // Preload the material.
     materials.preload();
 
@@ -67,7 +65,7 @@ $(document).ready(function() {
     objLoader.setPath('assets/models/')
     objLoader.load(
       // resource URL
-      'tree.obj',
+      'tree-v6.obj',
       // called when resource is loaded
       function ( object ) {
         scene.add( object );
