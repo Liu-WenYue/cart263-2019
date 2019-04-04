@@ -5,8 +5,19 @@
 Assignemnt 8
 Liu WenYue
 
+This is a prototype for my final project, because I will be using three.js as the
+main approach for this project. In this prototype, I will be exploring the basic
+knowledge of the library, like setting up the scene (create scene, camera, render,
+lightings). I also explored how to import a 3D model and its material. In the
+interaction aspect, the players will be looking at the scene in POV angle and
+moving around the scene with keyboard or mouse input.
 
-
+My final project is about friendship, where the players have to find their sad
+friend and send her some warmth. The top view of the scene using the orthographic
+Camera will be displayed for a limited time, players have to remember the route
+from their current location to the sad friend. The map disappears and the players
+now is in their POV and in the scene. They have to find their sad friend within
+the given time. The game gets harder as they move on.
 
 ******************/
 
