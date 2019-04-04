@@ -46,8 +46,7 @@ $(document).ready(function() {
   // Create plane using plane geometry and material.
   plane = new THREE.Mesh(planeGeometry, planeMaterial);
   // Rotate the plane.
-  plane.rotation.x = -45;
-  plane.rotation.z = 30;
+  plane.rotation.x -= Math.PI/2;
 
   // Add the plane to the scene.
   scene.add(plane);
@@ -95,15 +94,42 @@ $(document).ready(function() {
   scene.add(ambientLight);
 
   // Set the default camera position.
-  camera.position.set(1,-1,5);
-
-  // Set the default angle of the camera to be point of view.
-  camera.rotation.x = .5;
-  camera.rotation.y = .15;
+  camera.position.set(0,2,8);
 
   // Call animate function.
   animate();
+  updateCamera();
 })
+
+
+// updateCamera()
+//
+// Function that allows the user to move around in POV.
+function updateCamera() {
+  $(document).on('keydown',function(e) {
+    // press w to move front.
+    if (e.keyCode === 87) {
+      camera.position.x -= Math.sin(camera.rotation.y) * 1;
+      camera.position.z -= Math.cos(camera.rotation.y) * 1;
+    }
+    // press s to move back.
+    if (e.keyCode === 83) {
+      camera.position.x += Math.sin(camera.rotation.y) * 1;
+      camera.position.z += Math.cos(camera.rotation.y) * 1;
+    }
+    // press a to rotate the camera to the left.
+    if (e.keyCode === 65) {
+      camera.rotation.y += Math.PI * 0.05;
+    }
+    // press d to rotate the camera to the right.
+    if (e.keyCode === 68) {
+      camera.rotation.y -= Math.PI * 0.05;
+    }
+
+    // Render the scene with the perspective camera.
+    renderer.render(scene, camera);
+  })
+}
 
 
 // animate()
