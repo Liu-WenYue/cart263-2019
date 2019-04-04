@@ -94,8 +94,12 @@ $(document).ready(function() {
   // Add ambient light to the scene.
   scene.add(ambientLight);
 
-  // Set the camera z position.
-  camera.position.z = 10;
+  // Set the default camera position.
+  camera.position.set(1,-1,5);
+
+  // Set the default angle of the camera to be point of view.
+  camera.rotation.x = .5;
+  camera.rotation.y = .15;
 
   // Call animate function.
   animate();
