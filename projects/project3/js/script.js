@@ -49,9 +49,40 @@ $(document).ready(function() {
   // Set the default camera position.
   camera.position.set(0,2,6);
 
-  // Call animate function.
+  // Call animate function and update camera function.
   animate();
+  updateCamera();
 })
+
+
+// updateCamera()
+//
+// Function that allows the user to move around in POV.
+function updateCamera() {
+  $(document).on('keydown',function(e) {
+    // press w to move front.
+    if (e.keyCode === 87) {
+      newPosition.x -= Math.sin(camera.rotation.y) * 1;
+      newPosition.z -= Math.cos(camera.rotation.y) * 1;
+    }
+    // press s to move back.
+    if (e.keyCode === 83) {
+      newPosition.x += Math.sin(camera.rotation.y) * 1;
+      newPosition.z += Math.cos(camera.rotation.y) * 1;
+    }
+    // press a to rotate the camera to the left.
+    if (e.keyCode === 65) {
+      camera.rotation.y += Math.PI * 0.05;
+    }
+    // press d to rotate the camera to the right.
+    if (e.keyCode === 68) {
+      camera.rotation.y -= Math.PI * 0.05;
+    }
+
+    // Render the scene with the perspective camera.
+    renderer.render(scene, camera);
+  })
+}
 
 
 // animate()
