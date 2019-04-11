@@ -17,6 +17,10 @@ let renderer;
 // Variable that stores the plane geomotry.
 let plane;
 
+// Variable that stores the sky and the sun.
+let sky;
+let sun;
+
 
 // Get the document set up.
 $(document).ready(function() {
@@ -24,6 +28,21 @@ $(document).ready(function() {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
   renderer = new THREE.WebGLRenderer();
+
+  // Create a new sky with the size of 45000 and add it into the scene.
+  sky = new THREE.Sky();
+  sky.scale.setScalar(45000);
+  scene.add(sky);
+
+  // Add sun geometry and material.
+  let sunGeometry = new THREE.PlaneGeometry(20000,12,4);
+  let sunMaterial = new THREE.MeshBasicMaterial({color:0xffffff});
+  // Create a new sun, position it and make it invisible.
+  sun = new THREE.Mesh(sunGeometry, sunMaterial);
+  sun.position.y = -700000;
+  sun.visible = false;
+  // Add sun to the scene.
+  scene.add(sun);
 
 
   // Set the background color of the scene to white.
