@@ -19,7 +19,7 @@ let plane;
 
 // Variable that stores the sky and the sun.
 let sky;
-let sun;
+let sunSphere;
 
 
 // Get the document set up.
@@ -28,21 +28,6 @@ $(document).ready(function() {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
   renderer = new THREE.WebGLRenderer();
-
-  // Create a new sky with the size of 45000 and add it into the scene.
-  sky = new THREE.Sky();
-  sky.scale.setScalar(45000);
-  scene.add(sky);
-
-  // Add sun geometry and material.
-  let sunGeometry = new THREE.PlaneGeometry(20000,12,4);
-  let sunMaterial = new THREE.MeshBasicMaterial({color:0xffffff});
-  // Create a new sun, position it and make it invisible.
-  sun = new THREE.Mesh(sunGeometry, sunMaterial);
-  sun.position.y = -700000;
-  sun.visible = false;
-  // Add sun to the scene.
-  scene.add(sun);
 
 
   // Set the background color of the scene to white.
@@ -68,10 +53,73 @@ $(document).ready(function() {
   // Set the default camera position.
   camera.position.set(0,2,6);
 
+  // Call the init sky function.
+  initSky();
+
   // Call animate function and update camera function.
   animate();
   updateCamera();
 })
+
+
+// initSky()
+//
+// Function that creates a sky in the background.
+function initSky() {
+  // Create a new sky with the size of 45000 and add it into the scene.
+  sky = new THREE.Sky();
+  sky.scale.setScalar(45000);
+  scene.add(sky);
+
+  // Add a new sun and add it into the scene.
+  sunSphere = new THREE.Mesh(
+    new THREE.SphereBufferGeometry( 20000, 16, 8 ),
+    new THREE.MeshBasicMaterial( { color: 0xffffff } )
+  );
+  sunSphere.position.y = -700000;
+  sunSphere.visible = false;
+  scene.add( sunSphere );
+
+  // Set values for the sky.
+  let effectController  = {
+    turbidity: 2.2,
+    rayleigh: 2.68,
+    mieCoefficient: 0.011,
+    mieDirectionalG: 0.8,
+    luminance: 1,
+    inclination: 0.49, // elevation / inclination
+    azimuth: 0.25, // Facing front,
+    sun: ! true
+  };
+
+  // Variable that stores the distance.
+  let distance = 400000;
+
+  // Variable that store the sky material uniforms.
+  let uniforms = sky.material.uniforms;
+  // Sets the values to its respective properties.
+  uniforms[ "turbidity" ].value = effectController.turbidity;
+  uniforms[ "rayleigh" ].value = effectController.rayleigh;
+  uniforms[ "luminance" ].value = effectController.luminance;
+  uniforms[ "mieCoefficient" ].value = effectController.mieCoefficient;
+  uniforms[ "mieDirectionalG" ].value = effectController.mieDirectionalG;
+
+  // Variables that controls the angle of the sun.
+  let theta = Math.PI * ( effectController.inclination - 0.5 );
+  let phi = 2 * Math.PI * ( effectController.azimuth - 0.5 );
+
+  // Sets the position of the sun based on the distance and its angle.
+  sunSphere.position.x = distance * Math.cos( phi );
+  sunSphere.position.y = distance * Math.sin( phi ) * Math.sin( theta );
+  sunSphere.position.z = distance * Math.sin( phi ) * Math.cos( theta );
+
+  // Have the sun invisible.
+  sunSphere.visible = effectController.sun;
+  uniforms[ "sunPosition" ].value.copy( sunSphere.position );
+
+  // Render the scene with the camera.
+  renderer.render( scene, camera );
+}
 
 
 // updateCamera()
