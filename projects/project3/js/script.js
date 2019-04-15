@@ -40,10 +40,10 @@ $(document).ready(function() {
   document.body.appendChild(renderer.domElement);
 
   // Add plane geometry and material.
-  let planeGeometry = new THREE.PlaneGeometry(100,100,10,10);
-  let planeMaterial = new THREE.MeshBasicMaterial({color:0xcccccc});
+  let planeBufferGeometry = new THREE.PlaneBufferGeometry(100,100,10,10);
+  let planeBasicMaterial = new THREE.MeshBasicMaterial({color:0x845747});
   // Create plane using plane geometry and material.
-  plane = new THREE.Mesh(planeGeometry, planeMaterial);
+  plane = new THREE.Mesh(planeBufferGeometry, planeBasicMaterial);
   // Rotate the plane.
   plane.rotation.x -= Math.PI/2;
 
