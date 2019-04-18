@@ -129,13 +129,13 @@ function updateCamera() {
   $(document).on('keydown',function(e) {
     // press w to move front.
     if (e.keyCode === 87) {
-      newPosition.x -= Math.sin(camera.rotation.y) * 1;
-      newPosition.z -= Math.cos(camera.rotation.y) * 1;
+      camera.position.x -= Math.sin(camera.rotation.y) * 1;
+      camera.position.z -= Math.cos(camera.rotation.y) * 1;
     }
     // press s to move back.
     if (e.keyCode === 83) {
-      newPosition.x += Math.sin(camera.rotation.y) * 1;
-      newPosition.z += Math.cos(camera.rotation.y) * 1;
+      camera.position.x += Math.sin(camera.rotation.y) * 1;
+      camera.position.z += Math.cos(camera.rotation.y) * 1;
     }
     // press a to rotate the camera to the left.
     if (e.keyCode === 65) {
