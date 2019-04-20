@@ -89,11 +89,11 @@ $(document).ready(function() {
   };
 
   // Create an hemisphere light.
-  let light = new THREE.HemisphereLight(0xFFC392);
-  // Allow shadows for the objects.
-  light.castShadow = true;
-  // Add the light in the scene.
-  scene.add(light);
+  let hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+  // Set the position for the hemisphere Light.
+  hemiLight.position.set( 0, 20, 0 );
+  // Add the hemisphere light to the scene.
+  scene.add( hemiLight );
 
 
   // Call the init sky function.
