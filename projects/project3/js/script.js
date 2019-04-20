@@ -21,6 +21,14 @@ let plane;
 let sky;
 let sunSphere;
 
+// Variable that stores the array for borders.
+let borders = [
+  "assets/models/border-back.obj",
+  "assets/models/border-front.obj",
+  "assets/models/border-left.obj",
+  "assets/models/border-right.obj"
+];
+
 
 // Get the document set up.
 $(document).ready(function() {
@@ -52,6 +60,17 @@ $(document).ready(function() {
 
   // Set the default camera position.
   camera.position.set(0,2,6);
+
+  // Create a obj loader.
+  let loader = new THREE.OBJLoader();
+
+  // Load the border models and add them to the scene.
+  for(let i = 0; i < borders.length; i++) {
+    loader.load(borders[i], function(object) {
+      scene.add(object);
+    })
+  };
+
 
   // Call the init sky function.
   initSky();
