@@ -14,6 +14,9 @@ let scene;
 let camera;
 let renderer;
 
+// Variable that stores the camera that is looking down from the sky.
+let topCamera;
+
 // Variable that stores the plane geomotry.
 let plane;
 
@@ -45,6 +48,9 @@ $(document).ready(function() {
   camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
   renderer = new THREE.WebGLRenderer();
 
+  // Create an Orthographic Camera that will be used as top camera.
+  topCamera = new THREE.OrthographicCamera( window.innerWidth / - 15, window.innerWidth / 15, window.innerHeight / 15, window.innerHeight / - 15, 1, 1000 );
+
 
   // Set the background color of the scene to white.
   scene.background = new THREE.Color( 0xffffff );
@@ -65,6 +71,10 @@ $(document).ready(function() {
 
   // Add the plane to the scene.
   scene.add(plane);
+
+  // Set the top camera's position and rotation.
+  topCamera.position.y = 30;
+  topCamera.rotation.x -= Math.PI/2;
 
   // Set the default camera position.
   camera.position.set(0,2,6);
