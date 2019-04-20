@@ -29,6 +29,14 @@ let borders = [
   "assets/models/border-right.obj"
 ];
 
+// Variable that stores the array for border materials.
+let bordersMaterial = [
+  "assets/models/border-back.mtl",
+  "assets/models/border-front.mtl",
+  "assets/models/border-left.mtl",
+  "assets/models/border-right.mtl"
+];
+
 
 // Get the document set up.
 $(document).ready(function() {
@@ -61,8 +69,17 @@ $(document).ready(function() {
   // Set the default camera position.
   camera.position.set(0,2,6);
 
-  // Create a obj loader.
+  // Create mtl loader and obj loader.
+  let mtlLoader = new THREE.MTLLoader();
   let loader = new THREE.OBJLoader();
+
+  // Load the border materials and added the material on the objects.
+  for(let i = 0; i < bordersMaterial.length; i++) {
+    mtlLoader.load(bordersMaterial[i], function(materials) {
+      materials.preload();
+      loader.setMaterials(materials);
+    })
+  };
 
   // Load the border models and add them to the scene.
   for(let i = 0; i < borders.length; i++) {
