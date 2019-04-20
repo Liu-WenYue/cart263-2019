@@ -88,6 +88,23 @@ $(document).ready(function() {
     })
   };
 
+  // load tree model and material.
+  mtlLoader.setPath('assets/models/');
+  mtlLoader.load('tree.mtl', function(materials) {
+    materials.preload();
+
+    // load a resource
+    loader.setMaterials(materials);
+    loader.setPath('assets/models/');
+    loader.load(
+      // resource URL
+      'tree.obj',
+      // add object in the scene.
+      function ( object ) {
+        scene.add( object );
+      })
+  });
+
   // Create an hemisphere light.
   let hemiLight = new THREE.HemisphereLight( 0xffffff, 0x444444 );
   // Set the position for the hemisphere Light.
