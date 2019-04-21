@@ -110,9 +110,6 @@ $(document).ready(function() {
         displayWinner();
         break;
 
-      case "GAMEOVER":
-        displayGameOver();
-        break;
     }
   })
 
