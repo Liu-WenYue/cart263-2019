@@ -44,7 +44,7 @@ let bordersMaterial = [
 ];
 
 // Variable that stores the starting state of the scene.
-let state = "MAP";
+let state = "STARTGAME";
 
 // Sets the progress bar to 1.
 let progress = 1;
@@ -86,7 +86,7 @@ $(document).ready(function() {
   topCamera.rotation.x -= Math.PI/2;
 
   // Set the default camera position.
-  camera.position.set(0,2,6);
+  camera.position.set(8,2,20);
 
   // Switch statement that allows the game to have different states.
   switch (state) {
