@@ -55,10 +55,10 @@ let bordersMaterial = [
 // Variable that stores the starting state of the scene.
 let state = "TITLE";
 
-// Sets the progress bar to 1.
-let progress = 1;
+// Sets the progress bar to 0.
+let progress = 0;
 
-//
+// 
 let target;
 
 
@@ -240,7 +240,7 @@ function viewMap() {
     thickness: 12,
     lineCap: "round",
     animation: { duration: 8000 },
-    animationStartValue: 0.0,
+    animationStartValue: 1,
   });
 
   // When the circle progress bar ends...
