@@ -46,6 +46,9 @@ let bordersMaterial = [
 // Variable that stores the starting state of the scene.
 let state = "MAP";
 
+// Sets the progress bar to 1.
+let progress = 1;
+
 
 // Get the document set up.
 $(document).ready(function() {
@@ -167,6 +170,26 @@ $(document).ready(function() {
 function viewMap() {
   // Set the camera to top camera.
   switchCamera = topCamera;
+
+  // Circle progress bar that use to count down.
+  $('#circle').circleProgress({
+    value: progress,
+    size: 100,
+    fill: "tomato",
+    thickness: 12,
+    lineCap: "round",
+    animation: { duration: 8000 },
+    animationStartValue: 0.0,
+  });
+
+  // When the circle progress bar ends...
+  $('#circle').on('circle-animation-end',function () {
+    // Set the display of circle to none.
+    document.getElementById('circle').style.display = "none";
+
+    // Calls the start game function.
+    startGame();
+  });
 }
 
 
