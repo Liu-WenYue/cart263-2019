@@ -44,7 +44,7 @@ let bordersMaterial = [
 ];
 
 // Variable that stores the starting state of the scene.
-let state = "STARTGAME";
+let state = "MAP";
 
 // Sets the progress bar to 1.
 let progress = 1;
@@ -144,6 +144,27 @@ $(document).ready(function() {
       // add object in the scene.
       function ( object ) {
         scene.add( object );
+      })
+  });
+
+  // load target model and material.
+  mtlLoader.setPath('assets/models/');
+  mtlLoader.load('target.mtl', function(materials) {
+    materials.preload();
+
+    // load a resource
+    loader.setMaterials(materials);
+    loader.setPath('assets/models/');
+    loader.load(
+      // resource URL
+      'target.obj',
+      // add object in the scene.
+      function ( object ) {
+        scene.add( object );
+        // Sets target's size, location and angle.
+        object.scale.set(0.8,0.8,0.8);
+        object.rotation.y -= Math.PI/2;
+        object.position.set(24,1,-16);
       })
   });
 
