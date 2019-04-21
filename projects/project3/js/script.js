@@ -58,7 +58,7 @@ let state = "TITLE";
 // Sets the progress bar to 0.
 let progress = 0;
 
-// 
+// Variable that store the target.
 let target;
 
 
