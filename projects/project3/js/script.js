@@ -264,6 +264,18 @@ function startGame() {
 }
 
 
+// displayWinner()
+//
+// function that displays the winning state.
+function displayWinner() {
+  // Set the camera to top camera.
+  switchCamera = topCamera;
+  // Change the top camera's y position where the scene is invisible.
+  topCamera.position.y = 0;
+  document.getElementById('winning').style.display = "block";
+}
+
+
 // initSky()
 //
 // Function that creates a sky in the background.
