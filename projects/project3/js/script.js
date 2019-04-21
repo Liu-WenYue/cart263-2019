@@ -369,6 +369,8 @@ function updateCamera() {
     if (distance <= 6) {
       // Calls the display winner function.
       displayWinner();
+      // Stops the sound effect when the player wins the game.
+      soundeffect.pause();
       return;
       // or camera will update its position.
     } else {
