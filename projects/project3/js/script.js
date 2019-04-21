@@ -100,7 +100,7 @@ $(document).ready(function() {
 
   // load tree model and material.
   mtlLoader.setPath('assets/models/');
-  mtlLoader.load('tree.mtl', function(materials) {
+  mtlLoader.load('tree-all.mtl', function(materials) {
     materials.preload();
 
     // load a resource
@@ -108,7 +108,7 @@ $(document).ready(function() {
     loader.setPath('assets/models/');
     loader.load(
       // resource URL
-      'tree.obj',
+      'tree-all.obj',
       // add object in the scene.
       function ( object ) {
         scene.add( object );
