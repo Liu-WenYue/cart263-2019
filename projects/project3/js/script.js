@@ -272,6 +272,13 @@ function displayWinner() {
   // Change the top camera's y position where the scene is invisible.
   topCamera.position.y = 0;
   document.getElementById('winning').style.display = "block";
+
+  // Speaks 'thank you' in chinese hong kong female accent.
+  let options = {
+    rate: 1,
+    pitch: 1,
+  };
+  responsiveVoice.speak("Thank you", "Chinese (Hong Kong) Female", options);
 }
 
 
@@ -369,9 +376,10 @@ function updateCamera() {
     if (distance <= 6) {
       // Calls the display winner function.
       displayWinner();
+
       // Stops the sound effect when the player wins the game.
       soundeffect.pause();
-      return;
+
       // or camera will update its position.
     } else {
       camera.position.set(newPosition.x,newPosition.y,newPosition.z);
