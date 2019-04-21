@@ -16,3 +16,32 @@ body {
   left: 35px;
   z-index: 6;
 }
+
+#title {
+  display: block;
+  position: absolute;
+  width: 100%;
+  top: 8vmax;
+  text-align: center;
+}
+
+h1 {
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.8vmax;
+  line-height: 3.5vmax;
+}
+
+h2 {
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5vmax;
+  line-height: 1.5vmax;
+}
+
+h3 {
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 2vmax;
+  line-height: 2vmax;
+}

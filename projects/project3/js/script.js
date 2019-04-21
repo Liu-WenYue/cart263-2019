@@ -44,7 +44,7 @@ let bordersMaterial = [
 ];
 
 // Variable that stores the starting state of the scene.
-let state = "MAP";
+let state = "TITLE";
 
 // Sets the progress bar to 1.
 let progress = 1;
@@ -183,6 +183,28 @@ $(document).ready(function() {
   // animate();
   updateCamera();
 })
+
+
+// displayTitle()
+//
+// function that displays the game instructions and start button.
+function displayTitle() {
+  // Set the camera to top camera.
+  switchCamera = topCamera;
+  // Change the top camera's y position where the scene is invisible.
+  topCamera.position.y = 0;
+
+  // If player click on the screen.
+  $(document).on('click', function() {
+    // Set the top camera's position back to the original position.
+    topCamera.position.y = 30;
+    // Hide the instructions.
+    document.getElementById('title').style.display = "none";
+
+    // Calls the view map function.
+    viewMap();
+  })
+}
 
 
 // viewMap()
