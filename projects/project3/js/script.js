@@ -17,6 +17,9 @@ let renderer;
 // Variable that stores the camera that is looking down from the sky.
 let topCamera;
 
+// Variable that stores the switchCamera.
+let switchCamera;
+
 // Variable that stores the plane geomotry.
 let plane;
 
@@ -39,6 +42,9 @@ let bordersMaterial = [
   "assets/models/border-left.mtl",
   "assets/models/border-right.mtl"
 ];
+
+// Variable that stores the starting state of the scene.
+let state = "MAP";
 
 
 // Get the document set up.
@@ -78,6 +84,29 @@ $(document).ready(function() {
 
   // Set the default camera position.
   camera.position.set(0,2,6);
+
+  // Switch statement that allows the game to have different states.
+  switch (state) {
+    case "TITLE":
+    displayTitle();
+    break;
+
+    case "MAP":
+    viewMap();
+    break;
+
+    case "STARTGAME":
+    startGame();
+    break;
+
+    case "WIN":
+    displayWinner();
+    break;
+
+    case "GAMEOVER":
+    displayGameOver();
+    break;
+  }
 
   // Create mtl loader and obj loader.
   let mtlLoader = new THREE.MTLLoader();
@@ -127,9 +156,27 @@ $(document).ready(function() {
   initSky();
 
   // Call animate function and update camera function.
-  animate();
+  // animate();
   updateCamera();
 })
+
+
+// viewMap()
+//
+// function that displays the map for the scene.
+function viewMap() {
+  // Set the camera to top camera.
+  switchCamera = topCamera;
+}
+
+
+// startGame()
+//
+// function that displays the scene in players' POV.
+function startGame() {
+  // Sets the camera to the perspective camera.
+  switchCamera = camera;
+}
 
 
 // initSky()
@@ -187,8 +234,8 @@ function initSky() {
   sunSphere.visible = effectController.sun;
   uniforms[ "sunPosition" ].value.copy( sunSphere.position );
 
-  // Render the scene with the camera.
-  renderer.render( scene, camera );
+  // Render the scene.
+  animate();
 }
 
 
@@ -215,10 +262,10 @@ function updateCamera() {
     if (e.keyCode === 68) {
       camera.rotation.y -= Math.PI * 0.05;
     }
-
-    // Render the scene with the perspective camera.
-    renderer.render(scene, camera);
   })
+
+  // Render the scene.
+  animate();
 }
 
 
@@ -227,5 +274,6 @@ function updateCamera() {
 // Function that renders the animation repeatly.
 function animate() {
   requestAnimationFrame(animate);
-  renderer.render(scene, camera);
+  // Use the switchCamera to change the angle of the scene.
+  renderer.render(scene, switchCamera);
 }
