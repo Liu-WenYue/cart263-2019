@@ -2,10 +2,19 @@
 
 /*****************
 
-Project 3
-Liu WenYue
+Project 3 - Friendship
+Liu WenYue, 21st April 2019
 
+This game is about a sad girl who was hidden in the forest. The players are
+asked to remember the nearest route and find their sad friend.
 
+w to move front;
+s to move back;
+a to rotate to the left;
+d to rotate to the right;
+
+For more detailed game description and the machanism of the game,
+please refer to the README.md file located in this project file.
 
 ******************/
 
