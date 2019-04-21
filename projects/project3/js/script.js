@@ -49,6 +49,9 @@ let state = "TITLE";
 // Sets the progress bar to 1.
 let progress = 1;
 
+//
+let target;
+
 
 // Get the document set up.
 $(document).ready(function() {
@@ -89,27 +92,30 @@ $(document).ready(function() {
   camera.position.set(8,2,20);
 
   // Switch statement that allows the game to have different states.
-  switch (state) {
-    case "TITLE":
-    displayTitle();
-    break;
+  $(document).ready(function() {
+    switch (state) {
+      case "TITLE":
+        displayTitle();
+        break;
 
-    case "MAP":
-    viewMap();
-    break;
+      case "MAP":
+        viewMap();
+        break;
 
-    case "STARTGAME":
-    startGame();
-    break;
+      case "STARTGAME":
+        startGame();
+        break;
 
-    case "WIN":
-    displayWinner();
-    break;
+      case "WIN":
+        displayWinner();
+        break;
 
-    case "GAMEOVER":
-    displayGameOver();
-    break;
-  }
+      case "GAMEOVER":
+        displayGameOver();
+        break;
+    }
+  })
+
 
   // Create mtl loader and obj loader.
   let mtlLoader = new THREE.MTLLoader();
@@ -165,6 +171,8 @@ $(document).ready(function() {
         object.scale.set(0.8,0.8,0.8);
         object.rotation.y -= Math.PI/2;
         object.position.set(24,1,-16);
+
+        target = object;
       })
   });
 
@@ -250,6 +258,9 @@ function viewMap() {
 function startGame() {
   // Sets the camera to the perspective camera.
   switchCamera = camera;
+
+  // Calls the update camera function.
+  updateCamera();
 }
 
 
@@ -318,15 +329,17 @@ function initSky() {
 // Function that allows the user to move around in POV.
 function updateCamera() {
   $(document).on('keydown',function(e) {
+    let newPosition = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z);
+    console.log(newPosition);
     // press w to move front.
     if (e.keyCode === 87) {
-      camera.position.x -= Math.sin(camera.rotation.y) * 1;
-      camera.position.z -= Math.cos(camera.rotation.y) * 1;
+      newPosition.x -= Math.sin(camera.rotation.y) * 1;
+      newPosition.z -= Math.cos(camera.rotation.y) * 1;
     }
     // press s to move back.
     if (e.keyCode === 83) {
-      camera.position.x += Math.sin(camera.rotation.y) * 1;
-      camera.position.z += Math.cos(camera.rotation.y) * 1;
+      newPosition.x += Math.sin(camera.rotation.y) * 1;
+      newPosition.z += Math.cos(camera.rotation.y) * 1;
     }
     // press a to rotate the camera to the left.
     if (e.keyCode === 65) {
@@ -335,6 +348,20 @@ function updateCamera() {
     // press d to rotate the camera to the right.
     if (e.keyCode === 68) {
       camera.rotation.y -= Math.PI * 0.05;
+    }
+
+    // Calculate the distance between camera and target.
+    let distance = newPosition.distanceTo(target.position);
+    // Calculate the size of the target.
+    console.log(new THREE.Box3().setFromObject(target).getSize())
+    // If camera reaches the target...
+    if (distance <= 6) {
+      // Calls the display winner function.
+      displayWinner();
+      return;
+      // or camera will update its position.
+    } else {
+      camera.position.set(newPosition.x,newPosition.y,newPosition.z);
     }
   })
 
