@@ -245,6 +245,8 @@ function viewMap() {
 
     // Calls the start game function.
     startGame();
+    // Calls the sound effect function.
+    soundEffect();
   });
 }
 
@@ -376,6 +378,16 @@ function updateCamera() {
 
   // Render the scene.
   animate();
+}
+
+
+// soundEffect()
+//
+// To handle the soundEffect.
+function soundEffect() {
+  soundeffect.loop = true;
+  soundeffect.volume = 1;
+  soundeffect.play();
 }
 
 
