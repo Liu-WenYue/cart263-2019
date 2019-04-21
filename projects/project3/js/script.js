@@ -214,6 +214,10 @@ function viewMap() {
   // Set the camera to top camera.
   switchCamera = topCamera;
 
+  // Display the starting point mark.
+  document.getElementById('startingpoint').style.display = "block";
+  document.getElementById('mark').style.display = "block";
+
   // Circle progress bar that use to count down.
   $('#circle').circleProgress({
     value: progress,
@@ -229,6 +233,10 @@ function viewMap() {
   $('#circle').on('circle-animation-end',function () {
     // Set the display of circle to none.
     document.getElementById('circle').style.display = "none";
+
+    // Set the starting point to none.
+    document.getElementById('startingpoint').style.display = "none";
+    document.getElementById('mark').style.display = "none";
 
     // Calls the start game function.
     startGame();

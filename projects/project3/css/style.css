@@ -45,3 +45,23 @@ h3 {
   font-size: 2vmax;
   line-height: 2vmax;
 }
+
+#startingpoint {
+  display: none;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background: crimson;
+  position: absolute;
+  top: 480px;
+  right: 610px;
+}
+
+#mark {
+  display: none;
+  color: #fff;
+  font-size: 2vmax;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+}
